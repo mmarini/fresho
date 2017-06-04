@@ -7,4 +7,8 @@ class Bundle
     @price = price
   end
 
+  def self.sort_by_size(bundles)
+    bundles.sort { |x, y| y.size <=> x.size }
+  end
+
 end

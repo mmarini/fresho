@@ -1,18 +1,22 @@
 class Order
 
-  attr_reader :amount, :product, :order_lines
+  attr_reader :product_lines
 
-  def initialize(amount, product)
-    @amount = amount
-    @product = product
-    @order_lines = []
+  def initialize
+    @product_lines = []
   end
 
-  def fill(bundles)
+  def add_product_line(product_line)
+    return if product_line.nil?
+    @product_lines << product_line
+  end
 
-    total_left, order_lines = OrderLine.fill(amount, bundles)
-
-    @order_lines.concat(order_lines) if total_left == 0
+  def to_s
+    total_line = ""
+    @product_lines.each do |line|
+      total_line += line.to_s + "\n"
+    end
+    total_line
   end
 
 end
