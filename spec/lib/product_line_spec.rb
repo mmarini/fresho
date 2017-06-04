@@ -95,7 +95,7 @@ describe ProductLine do
       product_line = ProductLine.new(9 + (2 * 5) + 3, product)
       product_line.fill!
       expect(product_line.to_s).to include('1 x 9 $16.99')
-      expect(product_line.to_s).to include('2 x 5 $19.90')
+      expect(product_line.to_s).to include('2 x 5 $9.95')
       expect(product_line.to_s).to include('1 x 3 $5.95')
     end
   end

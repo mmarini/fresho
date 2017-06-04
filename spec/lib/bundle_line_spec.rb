@@ -174,7 +174,7 @@ describe BundleLine do
 
   describe '.to_s' do
     it 'outputs the bundle breakdown' do
-      expect(subject.to_s).to eql('10 x 5 $99.50')
+      expect(subject.to_s).to eql('10 x 5 $9.95')
     end
   end
 

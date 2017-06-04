@@ -23,7 +23,7 @@ describe Order do
       product_line.fill!
       subject.add_product_line(product_line)
       expect(subject.to_s).to include('18 T58 $33.98')
-      expect(subject.to_s).to include('2 x 9 $33.98')
+      expect(subject.to_s).to include('2 x 9 $16.99')
     end
   end
 end

@@ -33,7 +33,7 @@ describe Shop do
       expect(output).to include('1 x 9 $24.95')
       expect(output).to include('1 x 6 $16.95')
       expect(output).to include('13 T58 $25.85')
-      expect(output).to include('2 x 5 $19.90')
+      expect(output).to include('2 x 5 $9.95')
       expect(output).to include('1 x 3 $5.95')
     end
 
@@ -45,7 +45,7 @@ describe Shop do
       expect(output).to include('10 R12 $12.99')
       expect(output).to include('1 x 10 $12.99')
       expect(output).to include('13 T58 $25.85')
-      expect(output).to include('2 x 5 $19.90')
+      expect(output).to include('2 x 5 $9.95')
       expect(output).to include('1 x 3 $5.95')
     end
 
