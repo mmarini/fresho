@@ -21,16 +21,6 @@ describe Shop do
 
   let(:subject) { Shop.new([tulip_product, lily_product, rose_product]) }
 
-  context 'attributes' do
-    it { should respond_to :products }
-  end
-
-  describe '.products' do
-    it 'returns a product based on code' do
-      expect(subject.products['T58']).to eq(tulip_product)
-    end
-  end
-
   describe '.process_order' do
     it 'creates and fills an order' do
       order_lines = [ '10 R12', '15 L09', '13 T58' ]

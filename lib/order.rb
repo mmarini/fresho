@@ -12,11 +12,8 @@ class Order
   end
 
   def to_s
-    total_line = ""
-    @product_lines.each do |line|
-      total_line += line.to_s + "\n"
-    end
-    total_line
+    lines = @product_lines.map { |line| line.to_s }
+    lines.join("\n")
   end
 
 end

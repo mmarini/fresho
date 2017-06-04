@@ -10,7 +10,6 @@ describe Product do
 
   context 'attributes' do
     it { should respond_to :code }
-    it { should respond_to :name }
     it { should respond_to :bundles }
   end
 

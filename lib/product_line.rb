@@ -19,7 +19,7 @@ class ProductLine
     @bundle_lines.any?
   end
 
-  def print_total
+  def total_summary
     "#{amount} #{product.code} $" + sprintf("%.2f", total_price)
   end
 
@@ -30,9 +30,9 @@ class ProductLine
   end
 
   def to_s
-    buffer = print_total + "\n"
-    @bundle_lines.each { |line| buffer += line.to_s + "\n" }
-    buffer
+    buffer = [ total_summary ]
+    buffer.concat(@bundle_lines.map { |line| line.to_s })
+    buffer.join("\n")
   end
 
 end

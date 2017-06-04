@@ -4,7 +4,7 @@ class Bundle
 
   def initialize(size, price)
     @size = size
-    @price = price
+    @price = BigDecimal.new(price.to_s)
   end
 
   def self.sort_by_size(bundles)

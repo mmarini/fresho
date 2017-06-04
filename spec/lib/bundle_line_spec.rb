@@ -167,4 +167,13 @@ describe BundleLine do
     end
   end
 
+  describe '.+' do
+    it 'adds two bundle lines together' do
+      bundle_line_1 = BundleLine.new(3, bundle_5)
+      bundle_line_2 = BundleLine.new(2, bundle_3)
+
+      expect(bundle_line_1 + bundle_line_2).to eq(BigDecimal.new('41.75'))
+    end
+  end
+
 end

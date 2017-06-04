@@ -41,6 +41,22 @@ describe ProductLine do
     end
   end
 
+  describe '.total_summary' do
+    it 'returns total line for a single line' do
+      total = 2 * bundle_5.price
+      product_line = ProductLine.new(2 * 5, product)
+      product_line.fill!
+      expect(product_line.total_summary).to eql('10 T58 $19.90')
+    end
+
+    it 'returns total line for multiple lines' do
+      total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
+      product_line = ProductLine.new(9 + (2 * 5) + 3, product)
+      product_line.fill!
+      expect(product_line.total_summary).to eql('22 T58 $42.84')
+    end
+  end
+
   describe '.total_price' do
     it 'returns total when bundle lines exist' do
       total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
@@ -63,22 +79,6 @@ describe ProductLine do
       product_line.fill!
       expect(product_line.bundle_lines.size).to eql(0)
       expect(product_line.total_price).to eql(BigDecimal('0'))
-    end
-  end
-
-  describe '.print_total' do
-    it 'returns total line for a single line' do
-      total = 2 * bundle_5.price
-      product_line = ProductLine.new(2 * 5, product)
-      product_line.fill!
-      expect(product_line.print_total).to eql('10 T58 $19.90')
-    end
-
-    it 'returns total line for multiple lines' do
-      total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
-      product_line = ProductLine.new(9 + (2 * 5) + 3, product)
-      product_line.fill!
-      expect(product_line.print_total).to eql('22 T58 $42.84')
     end
   end
 

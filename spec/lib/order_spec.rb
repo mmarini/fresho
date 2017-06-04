@@ -5,10 +5,6 @@ describe Order do
   let(:bundle) { Bundle.new(9, 16.99) }
   let(:product) { Product.new('T58', 'Tulips', [bundle]) }
 
-  context 'attributes' do
-    it { should respond_to :product_lines }
-  end
-
   describe '.add_product_line' do
     it 'adds a product line' do
       subject.add_product_line(ProductLine.new(2, product))
