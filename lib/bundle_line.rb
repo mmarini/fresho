@@ -2,11 +2,15 @@ require 'bigdecimal'
 
 class BundleLine
 
-  attr_reader :amount, :bundle
+  attr_reader :amount, :size, :price
 
   def initialize(amount, bundle)
     @amount = amount
-    @bundle = bundle
+
+    # Size and Price are being copied from the bundle
+    # Treating the BundleLine as an as-at representation of the bundle at order time
+    @size = bundle.size
+    @price = bundle.price
   end
 
   def self.fill(amount, bundles)
@@ -51,8 +55,7 @@ class BundleLine
   end
 
   def total
-    return BigDecimal('0') if bundle.nil?
-    BigDecimal.new((amount * bundle.price).to_s)
+    BigDecimal.new((amount * price).to_s)
   end
 
   def +(other)
@@ -64,7 +67,7 @@ class BundleLine
   end
 
   def to_s
-    "#{amount} x #{bundle.size} $" + sprintf("%.2f", total)
+    "#{amount} x #{size} $" + sprintf("%.2f", total)
   end
 
 end

@@ -36,6 +36,23 @@ describe Shop do
       expect(output).to include('2 x 5 $19.90')
       expect(output).to include('1 x 3 $5.95')
     end
+
+    it 'ignores bad orders' do
+      order_lines = [ '10 R12', 'ABC', '13 T58' ]
+      order = subject.process_order(order_lines)
+      output = order.to_s
+
+      expect(output).to include('10 R12 $12.99')
+      expect(output).to include('1 x 10 $12.99')
+      expect(output).to include('13 T58 $25.85')
+      expect(output).to include('2 x 5 $19.90')
+      expect(output).to include('1 x 3 $5.95')
+    end
+
+    it 'ignores no orders' do
+      order = subject.process_order([])
+      expect(order.to_s).to eq('')
+    end
   end
 
 end

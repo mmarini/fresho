@@ -10,7 +10,8 @@ describe BundleLine do
 
   context 'attributes' do
     it { should respond_to :amount }
-    it { should respond_to :bundle }
+    it { should respond_to :size }
+    it { should respond_to :price }
   end
 
   describe '#fill' do
@@ -23,7 +24,8 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_9)
+        expect(bundle_line.size).to eql(9)
+        expect(bundle_line.price).to eql(BigDecimal('16.99'))
       end
 
       it 'calculates the order where it is a multiple of 9' do
@@ -33,7 +35,8 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(3)
-        expect(bundle_line.bundle).to eql(bundle_9)
+        expect(bundle_line.size).to eql(9)
+        expect(bundle_line.price).to eql(BigDecimal('16.99'))
       end
 
       it 'calculates the order where it is a single of 5' do
@@ -43,7 +46,8 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_5)
+        expect(bundle_line.size).to eql(5)
+        expect(bundle_line.price).to eql(BigDecimal('9.95'))
       end
 
       it 'calculates the order where it is a multiple of 5' do
@@ -54,7 +58,8 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_5)
+        expect(bundle_line.size).to eql(5)
+        expect(bundle_line.price).to eql(BigDecimal('9.95'))
       end
 
       it 'calculates the order where it is a single of 3' do
@@ -65,7 +70,8 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_3)
+        expect(bundle_line.size).to eql(3)
+        expect(bundle_line.price).to eql(BigDecimal('5.95'))
       end
 
       it 'calculates the order where it is a multiple of 3' do
@@ -76,7 +82,8 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_3)
+        expect(bundle_line.size).to eql(3)
+        expect(bundle_line.price).to eql(BigDecimal('5.95'))
       end
 
       it 'does not calculate if the order cannot be filled' do
@@ -95,15 +102,18 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_9)
+        expect(bundle_line.size).to eql(9)
+        expect(bundle_line.price).to eql(BigDecimal('16.99'))
 
         bundle_line = bundle_lines[1]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_5)
+        expect(bundle_line.size).to eql(5)
+        expect(bundle_line.price).to eql(BigDecimal('9.95'))
 
         bundle_line = bundle_lines[2]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_3)
+        expect(bundle_line.size).to eql(3)
+        expect(bundle_line.price).to eql(BigDecimal('5.95'))
       end
 
       it 'calculates the order where it contains 1 bundle of 9, 2 bundles of 5' do
@@ -113,11 +123,13 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_9)
+        expect(bundle_line.size).to eql(9)
+        expect(bundle_line.price).to eql(BigDecimal('16.99'))
 
         bundle_line = bundle_lines[1]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_5)
+        expect(bundle_line.size).to eql(5)
+        expect(bundle_line.price).to eql(BigDecimal('9.95'))
       end
 
       it 'calculates the order where it contains 1 bundle of 9, 2 bundles of 3' do
@@ -127,11 +139,13 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(1)
-        expect(bundle_line.bundle).to eql(bundle_9)
+        expect(bundle_line.size).to eql(9)
+        expect(bundle_line.price).to eql(BigDecimal('16.99'))
 
         bundle_line = bundle_lines[1]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_3)
+        expect(bundle_line.size).to eql(3)
+        expect(bundle_line.price).to eql(BigDecimal('5.95'))
       end
 
       it 'calculates the order where it contains 2 bundle of 5, 2 bundles of 3' do
@@ -141,11 +155,13 @@ describe BundleLine do
 
         bundle_line = bundle_lines[0]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_5)
+        expect(bundle_line.size).to eql(5)
+        expect(bundle_line.price).to eql(BigDecimal('9.95'))
 
         bundle_line = bundle_lines[1]
         expect(bundle_line.amount).to eql(2)
-        expect(bundle_line.bundle).to eql(bundle_3)
+        expect(bundle_line.size).to eql(3)
+        expect(bundle_line.price).to eql(BigDecimal('5.95'))
       end
     end
   end
@@ -153,11 +169,6 @@ describe BundleLine do
   describe '.total' do
     it 'outputs the total' do
       expect(subject.total).to eql(99.50)
-    end
-
-    it 'outputs 0 if bundle is nil' do
-      bundle_line = BundleLine.new(10, nil)
-      expect(bundle_line.total).to eql(0)
     end
   end
 
