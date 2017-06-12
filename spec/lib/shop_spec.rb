@@ -35,6 +35,7 @@ describe Shop do
       expect(output).to include('13 Rockmelons $25.85')
       expect(output).to include('2 x 5 pack @ $9.95')
       expect(output).to include('1 x 3 pack @ $5.95')
+      expect(output).to include('TOTAL $98.63')
     end
 
     it 'ignores bad orders' do
@@ -47,6 +48,7 @@ describe Shop do
       expect(output).to include('13 Rockmelons $25.85')
       expect(output).to include('2 x 5 pack @ $9.95')
       expect(output).to include('1 x 3 pack @ $5.95')
+      expect(output).to include('TOTAL $43.83')
     end
 
     it 'ignores no orders' do

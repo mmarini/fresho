@@ -99,4 +99,16 @@ describe ProductLine do
       expect(product_line.to_s).to include('1 x 3 pack @ $5.95')
     end
   end
+
+  describe '.+' do
+    it 'adds two ProductLines lines together' do
+      product_line_1 = ProductLine.new(9 + (2 * 5) + 3, product)
+      product_line_1.fill!
+
+      product_line_2 = ProductLine.new((2 * 9) + 5 + 3, product)
+      product_line_2.fill!
+
+      expect(product_line_1 + product_line_2).to eq(BigDecimal.new('92.72'))
+    end
+  end
 end

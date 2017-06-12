@@ -35,4 +35,11 @@ class ProductLine
     buffer.join("\n")
   end
 
+  def +(other)
+    total_price + other
+  end
+
+  def coerce(other)
+    return self, other
+  end
 end
