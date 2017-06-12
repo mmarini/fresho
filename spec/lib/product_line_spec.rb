@@ -6,7 +6,7 @@ describe ProductLine do
   let(:bundle_5) { Bundle.new(5, 9.95) }
   let(:bundle_9) { Bundle.new(9, 16.99) }
   let(:bundles) { [ bundle_3, bundle_5, bundle_9 ] }
-  let(:product) { Product.new('T58', 'Tulips', bundles) }
+  let(:product) { Product.new('Rockmelons', bundles) }
   let(:subject) { ProductLine.new(10, product) }
 
   context 'attributes' do
@@ -46,14 +46,14 @@ describe ProductLine do
       total = 2 * bundle_5.price
       product_line = ProductLine.new(2 * 5, product)
       product_line.fill!
-      expect(product_line.total_summary).to eql('10 T58 $19.90')
+      expect(product_line.total_summary).to eql('10 Rockmelons $19.90')
     end
 
     it 'returns total line for multiple lines' do
       total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
       product_line = ProductLine.new(9 + (2 * 5) + 3, product)
       product_line.fill!
-      expect(product_line.total_summary).to eql('22 T58 $42.84')
+      expect(product_line.total_summary).to eql('22 Rockmelons $42.84')
     end
   end
 
@@ -87,16 +87,16 @@ describe ProductLine do
       total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
       product_line = ProductLine.new(9 + (2 * 5) + 3, product)
       product_line.fill!
-      expect(product_line.to_s).to include('22 T58 $42.84')
+      expect(product_line.to_s).to include('22 Rockmelons $42.84')
     end
 
     it 'prints the bundle lines' do
       total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
       product_line = ProductLine.new(9 + (2 * 5) + 3, product)
       product_line.fill!
-      expect(product_line.to_s).to include('1 x 9 $16.99')
-      expect(product_line.to_s).to include('2 x 5 $9.95')
-      expect(product_line.to_s).to include('1 x 3 $5.95')
+      expect(product_line.to_s).to include('1 x 9 pack @ $16.99')
+      expect(product_line.to_s).to include('2 x 5 pack @ $9.95')
+      expect(product_line.to_s).to include('1 x 3 pack @ $5.95')
     end
   end
 end

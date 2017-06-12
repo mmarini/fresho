@@ -67,7 +67,7 @@ class BundleLine
   end
 
   def to_s
-    "#{amount} x #{size} $" + sprintf("%.2f", price)
+    "#{amount} x #{size} pack @ $" + sprintf("%.2f", price)
   end
 
 end

@@ -2,7 +2,7 @@ class Shop
 
   def initialize(products = [])
     @products = {}
-    products.each { |product| @products[product.code] = product }
+    products.each { |product| @products[product.name] = product }
   end
 
   def process_order(order_lines)
@@ -11,7 +11,7 @@ class Shop
     order_request = Shop.validate_order(order_lines)
 
     order_request.each do |order_line|
-      product = @products[order_line.product_code]
+      product = @products[order_line.product_name]
       unless product.nil?
         product_line = ProductLine.new(order_line.amount, product)
         product_line.fill!

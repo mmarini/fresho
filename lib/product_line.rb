@@ -20,7 +20,7 @@ class ProductLine
   end
 
   def total_summary
-    "#{amount} #{product.code} $" + sprintf("%.2f", total_price)
+    "#{amount} #{product.name} $" + sprintf("%.2f", total_price)
   end
 
   def total_price

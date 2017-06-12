@@ -5,7 +5,7 @@ describe ProductOrderRequest do
   let (:subject) { ProductOrderRequest.new('4 R12')}
 
   context 'attributes' do
-    it { should respond_to :product_code }
+    it { should respond_to :product_name }
 
     it { should respond_to :amount }
     it 'returns amount as an integer' do

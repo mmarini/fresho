@@ -1,9 +1,8 @@
 class Product
 
-  attr_reader :code, :bundles
+  attr_reader :name, :bundles
 
-  def initialize(code, name, bundles = {})
-    @code = code
+  def initialize(name, bundles = {})
     @name = name
     @bundles = bundles
   end
