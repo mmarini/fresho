@@ -2,11 +2,11 @@
 
 require_relative '../lib/init'
 
-roses = Product.new('R12', 'Roses', [ Bundle.new(5, 6.99), Bundle.new(10, 12.99) ])
-lillies = Product.new('L09', 'Lilies', [ Bundle.new(3, 9.95), Bundle.new(6, 16.95), Bundle.new(9, 24.95) ])
-tulips = Product.new('T58', 'Tulips', [ Bundle.new(3, 5.95), Bundle.new(5, 9.95), Bundle.new(9, 16.99) ])
+watermelons = Product.new('Watermelons', [ Bundle.new(3, 6.99), Bundle.new(5, 8.99) ])
+pineapples = Product.new('Pineapples', [ Bundle.new(2, 9.95), Bundle.new(5, 16.95), Bundle.new(8, 24.95) ])
+rockmelons = Product.new('Rockmelons', [ Bundle.new(3, 5.95), Bundle.new(5, 9.95), Bundle.new(9, 16.99) ])
 
-shop = Shop.new([roses, lillies, tulips])
+shop = Shop.new([watermelons, pineapples, rockmelons])
 
 # read order from file
 order_lines = File.read('./orders.txt').split("\n")

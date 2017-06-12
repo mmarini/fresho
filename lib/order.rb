@@ -1,4 +1,4 @@
-require 'order_hierarchy'
+require_relative './order_hierarchy'
 
 class Order
 

@@ -1,5 +1,5 @@
 require 'bigdecimal'
-require 'order_hierarchy'
+require_relative './order_hierarchy'
 
 class ProductLine
 
