@@ -54,12 +54,12 @@ class BundleLine
     [product_to_fill, order_lines]
   end
 
-  def total
+  def total_price
     BigDecimal.new((amount * price).to_s)
   end
 
   def +(other)
-    total + other
+    total_price + other
   end
 
   def coerce(other)

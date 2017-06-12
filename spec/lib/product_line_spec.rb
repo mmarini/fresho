@@ -12,19 +12,19 @@ describe ProductLine do
   context 'attributes' do
     it { should respond_to :amount }
     it { should respond_to :product }
-    it { should respond_to :bundle_lines }
+    it { should respond_to :children }
   end
 
   describe '.fill' do
     it 'fills the order where it can' do
       subject.fill!
-      expect(subject.bundle_lines.size).to eql(1)
+      expect(subject.children.size).to eql(1)
     end
 
     it 'does not fill the order if it cannot' do
       product_line = ProductLine.new(1, product)
       product_line.fill!
-      expect(product_line.bundle_lines.size).to eql(0)
+      expect(product_line.children).to be_nil
     end
   end
 
@@ -62,7 +62,7 @@ describe ProductLine do
       total = bundle_9.price + (2 * bundle_5.price) + bundle_3.price
       product_line = ProductLine.new(9 + (2 * 5) + 3, product)
       product_line.fill!
-      expect(product_line.bundle_lines.size).to eql(3)
+      expect(product_line.children.size).to eql(3)
       expect(product_line.total_price).to eql(BigDecimal(total.to_s))
     end
 
@@ -70,14 +70,14 @@ describe ProductLine do
       total = 2 * bundle_5.price
       product_line = ProductLine.new(2 * 5, product)
       product_line.fill!
-      expect(product_line.bundle_lines.size).to eql(1)
+      expect(product_line.children.size).to eql(1)
       expect(product_line.total_price).to eql(BigDecimal(total.to_s))
     end
 
     it 'returns 0 when order cannot be filled' do
       product_line = ProductLine.new(2, product)
       product_line.fill!
-      expect(product_line.bundle_lines.size).to eql(0)
+      expect(product_line.children).to be_nil
       expect(product_line.total_price).to eql(BigDecimal('0'))
     end
   end

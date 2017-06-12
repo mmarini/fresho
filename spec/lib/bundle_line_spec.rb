@@ -166,9 +166,9 @@ describe BundleLine do
     end
   end
 
-  describe '.total' do
-    it 'outputs the total' do
-      expect(subject.total).to eql(99.50)
+  describe '.total_price' do
+    it 'outputs the total_price' do
+      expect(subject.total_price).to eql(99.50)
     end
   end
 

@@ -10,12 +10,12 @@ describe Order do
   describe '.add_product_line' do
     it 'adds a product line' do
       subject.add_product_line(ProductLine.new(2, product))
-      expect(subject.product_lines.size).to eql(1)
+      expect(subject.children.size).to eql(1)
     end
 
     it 'does not add a product line' do
       subject.add_product_line(nil)
-      expect(subject.product_lines.size).to eql(0)
+      expect(subject.children).to be_nil
     end
   end
 
@@ -31,7 +31,7 @@ describe Order do
       product_line_2.fill!
       subject.add_product_line(product_line_2)
 
-      expect(subject.product_lines.size).to eql(2)
+      expect(subject.children.size).to eql(2)
       expect(subject.total_price).to eql(BigDecimal(total_1 + total_2))
     end
 
@@ -41,12 +41,11 @@ describe Order do
       product_line.fill!
       subject.add_product_line(product_line)
 
-      expect(subject.product_lines.size).to eql(1)
+      expect(subject.children.size).to eql(1)
       expect(subject.total_price).to eql(BigDecimal(total.to_s))
     end
 
     it 'returns 0 when order cannot be filled' do
-      expect(subject.product_lines.size).to eql(0)
       expect(subject.total_price).to eql(BigDecimal('0'))
     end
   end
@@ -59,6 +58,10 @@ describe Order do
       expect(subject.to_s).to include('18 Rockmelons $33.98')
       expect(subject.to_s).to include('2 x 9 pack @ $16.99')
       expect(subject.to_s).to include('TOTAL $33.98')
+    end
+
+    it 'prints an empty string if no children' do
+      expect(subject.to_s).to eq('')
     end
   end
 end
